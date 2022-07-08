@@ -1,35 +1,34 @@
 const fs = require("fs");
-const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
-let result = 1;
-input.splice(0, 1);
-const timeArr = input
-  .map((time) => {
-    return time.split(" ").map(Number);
-  })
-  .sort(function (a, b) {
-    if (a[1] === b[1]) {
-      return a[0] - b[0];
-    } else {
-      return a[1] - b[1];
-    }
-  });
-let lastTime = timeArr[0][1];
-let i = 1;
+const [totaltargetNum, tree] = fs
+  .readFileSync("/dev/stdin")
+  .toString()
+  .trim()
+  .split("\n");
+const [total, targetNum] = totaltargetNum.split(" ").map(Number);
+const treeArr = tree.split(" ").map(Number);
+let start = 0,
+  end = Math.max(...treeArr),
+  result = 0;
 
-while (true) {
-  let flag = true;
-  for (let j = i; j < timeArr.length; j++) {
-    if (timeArr[j][0] >= lastTime) {
-      flag = false;
-      result++;
-      i = j + 1;
-      lastTime = timeArr[j][1];
-      break;
+while (start <= end) {
+  const mid = Math.floor((start + end) / 2);
+  let sum = targetNum;
+  let check = false;
+  for (let i = 0; i < treeArr.length; i++) {
+    if (treeArr[i] > mid) {
+      sum = sum - treeArr[i] + mid;
+      if (sum <= 0) {
+        check = true;
+        break;
+      }
     }
   }
-  if (flag) {
-    break;
+
+  if (check) {
+    result = mid;
+    start = mid + 1;
+  } else {
+    end = mid - 1;
   }
 }
-
 console.log(result);
