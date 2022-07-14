@@ -1,30 +1,23 @@
 const fs = require("fs");
-const [totaltargetNum, tree] = fs
+const [totaltargetNum, ...lanLine] = fs
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
   .split("\n");
 const [total, targetNum] = totaltargetNum.split(" ").map(Number);
-const treeArr = tree.split(" ").map(Number);
+const lanLineArr = lanLine.map(Number);
 let start = 0,
-  end = Math.max(...treeArr),
+  end = Math.max(...lanLineArr),
   result = 0;
 
 while (start <= end) {
   const mid = Math.floor((start + end) / 2);
-  let sum = targetNum;
-  let check = false;
-  for (let i = 0; i < treeArr.length; i++) {
-    if (treeArr[i] > mid) {
-      sum = sum - treeArr[i] + mid;
-      if (sum <= 0) {
-        check = true;
-        break;
-      }
-    }
+  let sum = 0;
+  for (let i = 0; i < lanLineArr.length; i++) {
+    sum += Math.floor(lanLineArr[i] / mid);
   }
 
-  if (check) {
+  if (sum >= targetNum) {
     result = mid;
     start = mid + 1;
   } else {
