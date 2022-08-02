@@ -1,20 +1,9 @@
 const fs = require("fs");
-const input = fs
-  .readFileSync("/dev/stdin")
-  .toString()
-  .trim()
-  .split("")
-  .map(Number);
+const input = fs.readFileSync("/dev/stdin").toString().trim();
 
-const inputSum = input.reduce((prev, current) => {
-  return prev + current;
-}, 0);
+const dpArr = [0, 1n, 3n];
 
-if (inputSum % 3 === 0 && input.indexOf(0) !== -1) {
-  input.sort(function (a, b) {
-    return b - a;
-  });
-  console.log(input.join(""));
-} else {
-  console.log(-1);
+for (let i = 3; i <= 1000; i++) {
+  dpArr[i] = dpArr[i - 2] * 2n + dpArr[i - 1];
 }
+console.log((dpArr[input] % 10007n).toString());
