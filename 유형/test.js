@@ -1,27 +1,15 @@
 const fs = require("fs");
-const input = fs
-  .readFileSync("/dev/stdin")
-  .toString()
-  .trim()
-  .split(/\s/)
-  .map(Number);
-const sixPrice = [];
-const onePrice = [];
+const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-for (let i = 2; i < input.length; i++) {
-  if (i % 2 == 0) {
-    sixPrice.push(input[i]);
+let searchStart = 0;
+let count = 0;
+while (true) {
+  if (input[0].indexOf(input[1], searchStart) !== -1) {
+    count++;
+    searchStart = input[0].indexOf(input[1], searchStart) + input[1].length;
   } else {
-    onePrice.push(input[i]);
+    break;
   }
 }
 
-const minSixPrice = Math.min(...sixPrice);
-const minOnePrice = Math.min(...onePrice);
-
-const allSixPrice = (Math.floor(input[0] / 6) + 1) * minSixPrice;
-const allOnePrice = minOnePrice * input[0];
-const mixPrice =
-  Math.floor(input[0] / 6) * minSixPrice + (input[0] % 6) * minOnePrice;
-
-console.log(Math.min(allSixPrice, allOnePrice, mixPrice));
+console.log(count);
