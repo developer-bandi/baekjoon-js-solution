@@ -1,5 +1,5 @@
 const fs = require("fs");
-const [N, ...cardCostArr] = fs
+const [N, K] = fs
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
@@ -7,11 +7,17 @@ const [N, ...cardCostArr] = fs
   .map(Number);
 
 const dpArr = [];
+
 for (let i = 1; i <= N; i++) {
-  let maxNum = cardCostArr[i - 1];
-  for (let j = 1; j < i; j++) {
-    maxNum = Math.max(maxNum, dpArr[j] + dpArr[i - j]);
+  dpArr[i] = [];
+  for (let j = 0; j <= i; j++) {
+    if (j === 0 || i === j) {
+      dpArr[i][j] = 1;
+    } else if (j === 1) {
+      dpArr[i][j] = i;
+    } else {
+      dpArr[i][j] = (dpArr[i - 1][j - 1] + dpArr[i - 1][j]) % 10007;
+    }
   }
-  dpArr[i] = maxNum;
 }
-console.log(dpArr[N]);
+console.log(dpArr[N][K]);
