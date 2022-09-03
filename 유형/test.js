@@ -1,30 +1,38 @@
 const fs = require("fs");
-const testCase = fs
+const [N, ...board] = fs
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
-  .split(/\s/)
-  .map(Number);
-testCase.pop();
-const maxNum = 2 * Math.max(...testCase);
-const progressArr = [];
-const result = [];
-progressArr[1] = 0;
-
-for (let i = 2; i <= Math.sqrt(maxNum); i++) {
-  for (let j = i * 2; j <= maxNum; j = j + i) {
-    progressArr[j] = 0;
-  }
+  .split("\n");
+const [height, width] = N.split(" ").map(Number);
+for (let i = 0; i < board.length; i++) {
+  board[i] = board[i].split(" ").map(Number);
 }
-
-for (let i = 0; i < testCase.length; i++) {
-  let count = 0;
-  for (let j = testCase[i] + 1; j <= testCase[i] * 2; j++) {
-    if (progressArr[j] !== 0) {
-      count++;
+const dpArr = new Array(height).fill(0).map(() => {
+  return new Array(width).fill(0);
+});
+dpArr[0][0] = board[0][0];
+out: for (let i = 0; i < height; i++) {
+  for (let j = 0; j < width; j++) {
+    if (i === height - 1 && j === width - 1) break out;
+    if (i + 1 < height) {
+      dpArr[i + 1][j] = Math.max(
+        dpArr[i][j] + board[i + 1][j],
+        dpArr[i + 1][j]
+      );
+    }
+    if (j + 1 < width) {
+      dpArr[i][j + 1] = Math.max(
+        dpArr[i][j] + board[i][j + 1],
+        dpArr[i][j + 1]
+      );
+    }
+    if (i + 1 < height && j + 1 < width) {
+      dpArr[i + 1][j + 1] = Math.max(
+        dpArr[i][j] + board[i + 1][j + 1],
+        dpArr[i + 1][j + 1]
+      );
     }
   }
-  result.push(count);
 }
-
-console.log(result.join("\n"));
+console.log(dpArr[height - 1][width - 1]);
