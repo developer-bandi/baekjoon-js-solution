@@ -1,49 +1,35 @@
-const input = require("fs")
-  .readFileSync("/dev/stdin")
-  .toString()
-  .trim()
-  .split("\n");
+const input = +require("fs").readFileSync("/dev/stdin").toString().trim();
+const allNumber = new Array(input + 1).fill(0).map((data, index) => index);
+allNumber[1] = 0;
 
-const [N, M] = input.shift().split(" ").map(Number);
-const [island1, island2] = input.pop().split(" ").map(Number);
-const board = new Array(N + 1).fill(0).map(() => []);
-
-for (let i = 0; i < input.length; i++) {
-  const row = input[i].split(" ").map(Number);
-  board[row[0]].push([row[1], row[2]]);
-  board[row[1]].push([row[0], row[2]]);
+for (let i = 2; i <= Math.floor(Math.sqrt(input)); i++) {
+  for (let j = i * 2; j <= input; j = j + i) {
+    allNumber[j] = 0;
+  }
 }
-let start = 0;
-let end = 1000000000;
-let mid = 0;
+
+const decimal = allNumber.filter((data) => {
+  if (data !== 0) {
+    return true;
+  }
+  return false;
+});
+let fisrt = 0;
+let last = 0;
+let sum = 2;
 let result = 0;
-while (start <= end) {
-  mid = Math.floor((start + end) / 2);
-  let flag = false;
-  const queue = [island1];
-  const visited = [];
-  let min = Infinity;
-  visited[island1] = 0;
-  out: while (queue.length > 0) {
-    const target = queue.shift();
-    for (let i = 0; i < board[target].length; i++) {
-      const [next, limit] = board[target][i];
-      if (limit >= mid && visited[next] !== 0) {
-        min = Math.min(min, limit);
-        if (next === island2) {
-          flag = true;
-          break out;
-        }
-        queue.push(next);
-        visited[next] = 0;
-      }
-    }
-  }
-  if (flag) {
-    result = min;
-    start = min + 1;
+while (decimal[last] !== undefined) {
+  if (sum < input) {
+    last++;
+    sum += decimal[last];
+  } else if (sum > input) {
+    sum -= decimal[fisrt];
+    fisrt++;
   } else {
-    end = mid - 1;
+    last++;
+    result++;
+    sum += decimal[last];
   }
 }
+
 console.log(result);
