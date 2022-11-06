@@ -2,50 +2,51 @@ const input = require("fs")
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
-  .split(" ")
-  .map(Number);
+  .split("\n");
 
-let dp = new Array(5).fill(0).map(() => []);
-dp[0][0] = 0;
-for (let i = 0; i < input.length - 1; i++) {
-  let temp = new Array(5).fill(0).map(() => []);
-  for (let j = 0; j < 5; j++) {
-    for (let k = 0; k < 5; k++) {
-      if (dp[j][k] === undefined) continue;
-      for (let l = 0; l < 2; l++) {
-        const target = l === 0 ? j : k;
-        let point = 0;
-
-        if (target === input[i]) {
-          point = 1;
-        } else if (target === 0) {
-          point = 2;
-        } else if (
-          (target + 1 === 5 ? 1 : target + 1) === input[i] ||
-          (target - 1 === 0 ? 4 : target - 1) === input[i]
-        ) {
-          point = 3;
-        } else {
-          point = 4;
-        }
-        if (l === 0) {
-          temp[input[i]][k] =
-            temp[input[i]][k] === undefined
-              ? dp[j][k] + point
-              : Math.min(temp[input[i]][k], dp[j][k] + point);
-        } else {
-          temp[j][input[i]] =
-            temp[j][input[i]] === undefined
-              ? dp[j][k] + point
-              : Math.min(temp[j][input[i]], dp[j][k] + point);
-        }
-      }
+let start = 1;
+const result = [];
+for (let i = 0; i < Number(input[0]); i++) {
+  const [count, order] = input[start].split(" ").map(Number);
+  const makedTime = input[start + 1].split(" ").map(Number);
+  const newTime = new Array(count + 1).fill(0);
+  const target = Number(input[start + 2 + order]);
+  const queue = [];
+  const entrys = new Array(count + 1).fill(0);
+  const outputs = new Array(count + 1).fill(0).map(() => []);
+  for (let i = start + 2; i < order + start + 2; i++) {
+    const row = input[i].split(" ").map(Number);
+    outputs[row[0]].push(row[1]);
+    entrys[row[1]]++;
+  }
+  for (let i = 1; i < entrys.length; i++) {
+    if (entrys[i] === 0) {
+      queue.push(i);
     }
   }
-  dp = temp;
+
+  while (queue.length > 0) {
+    const cur = queue.pop();
+    if (cur === target) {
+      result.push(makedTime[cur - 1]);
+      break;
+    }
+    outputs[cur].forEach((deleted) => {
+      if (--entrys[deleted] === 0) {
+        queue.push(deleted);
+        makedTime[deleted - 1] += Math.max(
+          makedTime[cur - 1],
+          newTime[deleted - 1]
+        );
+      } else {
+        newTime[deleted - 1] = Math.max(
+          newTime[deleted - 1],
+          makedTime[cur - 1]
+        );
+      }
+    });
+  }
+  start = start + 3 + order;
 }
-dp = dp.flat();
-dp.sort(function (a, b) {
-  return a - b;
-});
-console.log(dp[0]);
+
+console.log(result.join("\n"));
