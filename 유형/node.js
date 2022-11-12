@@ -1,52 +1,34 @@
-const input = require("fs")
-  .readFileSync("/dev/stdin")
-  .toString()
-  .trim()
-  .split("\n");
+const input = +require("fs").readFileSync("/dev/stdin").toString().trim();
 
-let start = 1;
-const result = [];
-for (let i = 0; i < Number(input[0]); i++) {
-  const [count, order] = input[start].split(" ").map(Number);
-  const makedTime = input[start + 1].split(" ").map(Number);
-  const newTime = new Array(count + 1).fill(0);
-  const target = Number(input[start + 2 + order]);
-  const queue = [];
-  const entrys = new Array(count + 1).fill(0);
-  const outputs = new Array(count + 1).fill(0).map(() => []);
-  for (let i = start + 2; i < order + start + 2; i++) {
-    const row = input[i].split(" ").map(Number);
-    outputs[row[0]].push(row[1]);
-    entrys[row[1]]++;
-  }
-  for (let i = 1; i < entrys.length; i++) {
-    if (entrys[i] === 0) {
-      queue.push(i);
-    }
-  }
-
-  while (queue.length > 0) {
-    const cur = queue.pop();
-    if (cur === target) {
-      result.push(makedTime[cur - 1]);
-      break;
-    }
-    outputs[cur].forEach((deleted) => {
-      if (--entrys[deleted] === 0) {
-        queue.push(deleted);
-        makedTime[deleted - 1] += Math.max(
-          makedTime[cur - 1],
-          newTime[deleted - 1]
-        );
-      } else {
-        newTime[deleted - 1] = Math.max(
-          newTime[deleted - 1],
-          makedTime[cur - 1]
-        );
+const visited = [];
+visited[input] = 0;
+let queue = [input];
+let count = 0;
+if (input !== 1) {
+  out: while (true) {
+    count++;
+    const tempt = [];
+    for (let i = 0; i < queue.length; i++) {
+      if (queue[i] % 3 === 0 && visited[queue[i] / 3] !== 0) {
+        if (queue[i] / 3 === 1) break out;
+        tempt.push(queue[i] / 3);
+        visited[queue[i] / 3] = 0;
       }
-    });
+
+      if (queue[i] % 2 === 0 && visited[queue[i] / 2] !== 0) {
+        if (queue[i] / 2 === 1) break out;
+        tempt.push(queue[i] / 2);
+        visited[queue[i] / 2] = 0;
+      }
+
+      if (visited[queue[i] - 1] !== 0) {
+        if (queue[i] - 1 === 1) break out;
+        tempt.push(queue[i] - 1);
+        visited[queue[i] - 1] = 0;
+      }
+    }
+    queue = tempt;
   }
-  start = start + 3 + order;
 }
 
-console.log(result.join("\n"));
+console.log(count);
