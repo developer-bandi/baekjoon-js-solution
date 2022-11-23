@@ -27,6 +27,7 @@
 - [로프](https://www.acmicpc.net/problem/2217)
 - [주유소](https://www.acmicpc.net/problem/13305)
 - [30](https://www.acmicpc.net/problem/10610)
+- [A → B](https://www.acmicpc.net/problem/16953)
 
 ## 3. 누적합
 
@@ -37,9 +38,14 @@
 - [괄호](https://www.acmicpc.net/problem/9012)
 - [균형잡힌 세상](https://www.acmicpc.net/status?user_id=jskim0427&problem_id=4949&from_mine=1)
 - [좋은 단어](https://www.acmicpc.net/problem/3986)
+- [문자열 폭발](https://www.acmicpc.net/problem/9935)
 
 ## 5. 이분탐색
 
 - [수 찾기](https://www.acmicpc.net/problem/1920)
 - [나무 자르기](https://www.acmicpc.net/problem/2805)
 - [공유기 설치](https://www.acmicpc.net/problem/2110)
+
+## 6. BFS를 이용하는 최단경로
+
+- [미로 탐색](https://www.acmicpc.net/problem/2178)
