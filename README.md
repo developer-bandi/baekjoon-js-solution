@@ -28,6 +28,8 @@
 - [주유소](https://www.acmicpc.net/problem/13305)
 - [30](https://www.acmicpc.net/problem/10610)
 - [A → B](https://www.acmicpc.net/problem/16953)
+- [A와 B](https://www.acmicpc.net/problem/12904)
+- [센서](https://www.acmicpc.net/problem/2212)
 
 ## 3. 누적합
 
@@ -49,6 +51,7 @@
 ## 6. BFS를 이용하는 최단경로
 
 - [미로 탐색](https://www.acmicpc.net/problem/2178)
+- [숨바꼭질](https://www.acmicpc.net/problem/1697)
 
 ## 7. 플러드필
 

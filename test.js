@@ -1,49 +1,16 @@
-const [max, ...board] = require("fs")
+const [N, K, ...position] = require("fs")
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
-  .split("\n")
-  .map((row, index) => (!index ? Number(row) : row.split("").map(Number)));
+  .split(/\s/)
+  .map(Number);
 
-let result = [];
-const dir = [
-  [0, 1],
-  [0, -1],
-  [1, 0],
-  [-1, 0],
-];
+position.sort((a, b) => a - b);
 
-for (let i = 0; i < max; i++) {
-  for (let j = 0; j < max; j++) {
-    if (board[i][j] === 1) {
-      bfs([i, j]);
-    }
-  }
-}
+const distance = position.map((value, index, array) => {
+  if (index === N - 1) return Infinity;
+  return array[index + 1] - value;
+});
+distance.sort((a, b) => b - a);
 
-function bfs(start) {
-  const queue = [[...start]];
-  board[start[0]][start[1]] = 0;
-  let count = 1;
-  while (queue.length) {
-    const [x, y] = queue.shift();
-
-    for (let i = 0; i < 4; i++) {
-      const xPos = x + dir[i][0];
-      const yPos = y + dir[i][1];
-
-      if (0 <= xPos && 0 <= yPos && xPos < max && yPos < max) {
-        if (board[xPos][yPos] === 1) {
-          board[xPos][yPos] = 0;
-          queue.push([xPos, yPos]);
-          count++;
-        }
-      }
-    }
-  }
-  result.push(count);
-}
-
-result.sort((a, b) => a - b);
-result.unshift(result.length);
-console.log(result.join("\n"));
+console.log(distance.slice(K).reduce((prev, cur) => prev + cur, 0));
