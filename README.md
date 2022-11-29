@@ -53,6 +53,7 @@
 
 - [미로 탐색](https://www.acmicpc.net/problem/2178)
 - [숨바꼭질](https://www.acmicpc.net/problem/1697)
+- [토마토](https://www.acmicpc.net/problem/7576)
 
 ## 7. 플러드필
 
