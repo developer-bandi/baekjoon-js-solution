@@ -35,6 +35,7 @@
 ## 3. 누적합
 
 - [개똥벌레](https://www.acmicpc.net/problem/3020)
+- [나머지 합](https://www.acmicpc.net/problem/10986)
 
 ## 4. 스택문자열
 
