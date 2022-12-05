@@ -69,3 +69,7 @@
 ## 9. 슬라이딩 윈도우
 
 - [수열](https://www.acmicpc.net/problem/2559)
+
+## 10. 시뮬레이션
+
+- [치즈](https://www.acmicpc.net/problem/2638)
