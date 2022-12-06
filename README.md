@@ -61,6 +61,8 @@
 - [단지번호붙이기](https://www.acmicpc.net/problem/2667)
 - [유기농 배추](https://www.acmicpc.net/problem/1012)
 - [섬의 갯수](https://www.acmicpc.net/problem/4963)
+- [적록색약](https://www.acmicpc.net/problem/10026)
+- [연구소](https://www.acmicpc.net/problem/14502)
 
 ## 8. 두 포인터
 
