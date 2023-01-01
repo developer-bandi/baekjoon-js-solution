@@ -32,6 +32,7 @@
 - [센서](https://www.acmicpc.net/problem/2212)
 - [주식](https://www.acmicpc.net/problem/11501)
 - [크게 만들기](https://www.acmicpc.net/problem/2812)
+- [통나무 건너뛰기](https://www.acmicpc.net/problem/11497)
 
 ## 3. 누적합
 
