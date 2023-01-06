@@ -34,6 +34,8 @@
 - [크게 만들기](https://www.acmicpc.net/problem/2812)
 - [통나무 건너뛰기](https://www.acmicpc.net/problem/11497)
 - [물병](https://www.acmicpc.net/problem/1052)
+- [순회강연](https://www.acmicpc.net/problem/2109)
+- [햄버거 분배](https://www.acmicpc.net/problem/19941)
 
 ## 3. 누적합
 
