@@ -36,6 +36,9 @@
 - [물병](https://www.acmicpc.net/problem/1052)
 - [순회강연](https://www.acmicpc.net/problem/2109)
 - [햄버거 분배](https://www.acmicpc.net/problem/19941)
+- [기타줄](https://www.acmicpc.net/problem/1049)
+- [뒤집기](https://www.acmicpc.net/problem/1439)
+- [수들의 합](https://www.acmicpc.net/problem/1789)
 
 ## 3. 누적합
 
