@@ -16,6 +16,7 @@
 - [자두나무](https://www.acmicpc.net/problem/2240)
 - [동물원](https://www.acmicpc.net/problem/1309)
 - [카드 구매하기](https://www.acmicpc.net/problem/11052)
+- [점프](https://www.acmicpc.net/problem/1890)
 
 ## 2. 그리디
 
