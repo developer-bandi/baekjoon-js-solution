@@ -84,6 +84,7 @@
 ## 9. 슬라이딩 윈도우
 
 - [수열](https://www.acmicpc.net/problem/2559)
+- [블로그](https://www.acmicpc.net/problem/21291)
 
 ## 10. 시뮬레이션
 
