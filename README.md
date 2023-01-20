@@ -20,6 +20,7 @@
 - [다리 놓기](https://www.acmicpc.net/problem/1010)
 - [내리막길](https://www.acmicpc.net/problem/1520)
 - [01타일](https://www.acmicpc.net/problem/1904)
+- [연속합](https://www.acmicpc.net/problem/1912)
 
 ## 2. 그리디
 
