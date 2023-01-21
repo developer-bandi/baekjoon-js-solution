@@ -86,6 +86,7 @@
 
 - [수열](https://www.acmicpc.net/problem/2559)
 - [블로그](https://www.acmicpc.net/problem/21291)
+- [회전초밥](https://www.acmicpc.net/problem/15961)
 
 ## 10. 시뮬레이션
 
