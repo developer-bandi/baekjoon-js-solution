@@ -22,6 +22,7 @@
 - [01타일](https://www.acmicpc.net/problem/1904)
 - [연속합](https://www.acmicpc.net/problem/1912)
 - [포도주시식](https://www.acmicpc.net/problem/2156)
+- [합분해](https://www.acmicpc.net/problem/2225)
 
 ## 2. 그리디
 

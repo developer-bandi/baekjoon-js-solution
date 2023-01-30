@@ -1,19 +1,20 @@
-const [N, ...list] = require("fs")
+const [N, K] = require("fs")
   .readFileSync("/dev/stdin")
   .toString()
   .trim()
-  .split(/\s/)
+  .split(" ")
   .map(Number);
 
-const result = list
-  .reduce(
-    ([zero, one, two], cur) => [
-      Math.max(zero, one, two),
-      zero + cur,
-      one + cur,
-    ],
-    [0, 0, 0]
-  )
-  .reduce((prev, cur) => (prev > cur ? prev : cur), 0);
+const MOD = 1000000000;
+let dp = new Array(N + 1).fill(1);
 
-console.log(result);
+for (let i = 0; i < K - 1; i++) {
+  const tempt = new Array(N + 1).fill(0);
+  for (let j = 0; j <= N; j++) {
+    for (let k = 0; k <= N - j; k++) {
+      tempt[j + k] = (tempt[j + k] + dp[j]) % MOD;
+    }
+  }
+  dp = tempt;
+}
+console.log(dp[N]);
