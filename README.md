@@ -83,6 +83,8 @@
 
 - [수들의 합 2](https://www.acmicpc.net/problem/2003)
 - [주몽](https://www.acmicpc.net/problem/1940)
+- [소수의 연속합](https://www.acmicpc.net/problem/1644)
+- [두 용액](https://www.acmicpc.net/problem/2470)
 
 ## 9. 슬라이딩 윈도우
 
